@@ -62,11 +62,11 @@ public class User {
         this.favouritePerformances = favouritePerformances;
     }
 
-    public ArrayList<Map<String, String>> getLeadingPerformances() {
+    public ArrayList<Map<String, String>> getLeading_performances() {
         return leadingPerformances;
     }
 
-    public void setLeadingPerformances(ArrayList<Map<String, String>> leadingPerformances) {
-        this.leadingPerformances = leadingPerformances;
+    public void setLeading_performances(ArrayList<Map<String, String>> leading_performances) {
+        this.leadingPerformances = leading_performances;
     }
 }
