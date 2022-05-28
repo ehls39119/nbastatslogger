@@ -240,7 +240,7 @@ public class AddStatsActivity extends AppCompatActivity {
             }
         }
 
-        System.out.println("\n");
+        System.out.println("\n\n");
         System.out.println("1.   " + statistics_integers);
         System.out.println("2.    " + player_name_strings);
         System.out.println("3.    " + team_name_strings);
