@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "447328471014",
+    "project_id": "nbastats-ia",
+    "storage_bucket": "nbastats-ia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447328471014:android:2d7c5a56991fe502457827",
+        "android_client_info": {
+          "package_name": "com.example.nba_stats_ia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447328471014-i8tj3qrih5i7hruv7kntrmenmcih9m5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrouo8VkZA-TjCev_j2KmLQd5UVV-GmME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447328471014-i8tj3qrih5i7hruv7kntrmenmcih9m5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

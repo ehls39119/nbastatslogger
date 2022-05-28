@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">nba_stats_ia</string>
+
+    <string-array name="Statistics">
+        <item>Points</item>
+        <item>Assists</item>
+        <item>Rebounds</item>
+        <item>Steals</item>
+        <item>Min</item>
+    </string-array>
+</resources>
