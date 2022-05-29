@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_add_favourite2.xml" value="0.15625" />
+        <entry key="app/src/main/res/layout/activity_add_favourite_stats.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_add_input.xml" value="0.25280898876404495" />
         <entry key="app/src/main/res/layout/activity_add_stats.xml" value="0.26481481481481484" />
         <entry key="app/src/main/res/layout/activity_input.xml" value="0.25280898876404495" />
@@ -10,7 +12,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/activity_navigate.xml" value="0.25280898876404495" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.21822920506328097" />
-        <entry key="app/src/main/res/layout/activity_stat_holder.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/activity_stat_holder.xml" value="0.34909138548528745" />
+        <entry key="app/src/main/res/layout/activity_stat_holder2.xml" value="0.28802083333333334" />
+        <entry key="app/src/main/res/layout/activity_stats_overview.xml" value="0.28802083333333334" />
+        <entry key="app/src/main/res/layout/activity_stats_overview2.xml" value="0.27291666666666664" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.15625" />
       </map>
     </option>
   </component>

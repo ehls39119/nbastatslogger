@@ -2,6 +2,7 @@ package com.example.nba_stats_ia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,8 +29,7 @@ public class AddStatsActivity extends AppCompatActivity{
     FirebaseAuth mAuth;
 
     private Spinner statSpinner;
-    private EditText inputDate;
-    private EditText statField;
+    public EditText inputDate;
 
 
     @Override
@@ -41,9 +41,8 @@ public class AddStatsActivity extends AppCompatActivity{
         db = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
 
+
         inputDate = findViewById(R.id.inputDateID);
-
-
 
 
 
@@ -258,10 +257,12 @@ public class AddStatsActivity extends AppCompatActivity{
         System.out.println("4.    " + sorted_date_strings);
 
         ArrayList<Map<String, String>> update_map = (ArrayList<Map<String, String>>) getList();
-        db.collection("Users").document(mUser.getEmail()).update("leadingPerformances", update_map);
-//        db.collection("Users").document(mUser.getEmail()).update("date", update_map);
+        db.collection("Users").document(mUser.getEmail()).update("leadingPerformances", update_map, "date", date_string);
 
         System.out.println("reached");
+
+        Intent z = new Intent(this, StatsOverview.class);
+        startActivity(z);
 
 
 
@@ -305,6 +306,9 @@ public class AddStatsActivity extends AppCompatActivity{
 ////
 ////
 //////        statSpinner.setOnItemSelectedListener(this);
+
+
+
 
 
 

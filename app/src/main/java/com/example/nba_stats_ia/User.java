@@ -12,7 +12,6 @@ public class User {
     public ArrayList<Map<String, String>> favouritePerformances;
     public ArrayList<Map<String, String>> leadingPerformances;
 
-
     public User (String inputName, String inputEmail, String inputPass){
         name = inputName;
         email = inputEmail;
@@ -66,7 +65,16 @@ public class User {
         return leadingPerformances;
     }
 
-    public void setLeading_performances(ArrayList<Map<String, String>> leading_performances) {
+    public void set_leading_performances(ArrayList<Map<String, String>> leading_performances) {
         this.leadingPerformances = leading_performances;
     }
+
+    public ArrayList<Map<String, String>> ret_leading_performances(){
+        return leadingPerformances;
+
+    }
+
+
+
+
 }
