@@ -49,6 +49,8 @@ public class StatsOverview extends AppCompatActivity {
 
     public void getAndPopulateData(View v) {
         userInfo.clear();
+
+
         db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

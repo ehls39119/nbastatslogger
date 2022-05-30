@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatAdapter extends RecyclerView.Adapter {
+public class LogAdapter extends RecyclerView.Adapter {
 
     ArrayList userData;
     Context currentContext;
 
-    public StatAdapter(ArrayList<User> studentInfoInput, Context context) {
+    public LogAdapter(ArrayList<User> studentInfoInput, Context context) {
         userData = studentInfoInput;
         this.currentContext = context;
     }
@@ -80,8 +80,6 @@ public class StatAdapter extends RecyclerView.Adapter {
             String finalStat_to_show = stat_to_show;
             String finalStat_to_show_value = stat_to_show_value;
 
-            String finalTeam_name = team_name;
-            String finalDate = date;
             ((StatHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -89,8 +87,6 @@ public class StatAdapter extends RecyclerView.Adapter {
                     Intent myIntent = new Intent(view.getContext(), addFavouriteStats.class);
                     myIntent.putExtra("Player Name", finalPlayer_name);
                     myIntent.putExtra(finalStat_to_show, finalStat_to_show_value);
-                    myIntent.putExtra("Date", finalDate);
-                    myIntent.putExtra("TeamName", finalTeam_name);
                     currentContext.startActivity(myIntent);
                 }
             });

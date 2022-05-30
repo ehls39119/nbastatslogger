@@ -44,17 +44,11 @@ public class AddStatsActivity extends AppCompatActivity{
 
         inputDate = findViewById(R.id.inputDateID);
 
-
-
         statSpinner = findViewById(R.id.statsSpinnerID);
         ArrayAdapter<CharSequence> statAdapter = ArrayAdapter.createFromResource(this,
                 R.array.Statistics, android.R.layout.simple_spinner_item);
         statAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statSpinner.setAdapter(statAdapter);
-
-
-
-
 
     }
 

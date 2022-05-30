@@ -10,13 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class StatHolder extends RecyclerView.ViewHolder {
     protected TextView nameText;
-    protected TextView statusText1;
+    protected TextView statText;
+    protected TextView dateText;
+    protected TextView teamText;
 
 
     public StatHolder(@NonNull View itemView) {
         super(itemView);
         nameText = (itemView).findViewById(R.id.playerNameID);
-        statusText1 = (itemView).findViewById(R.id.statNameID);
+        statText = (itemView).findViewById(R.id.statNameID);
+        dateText = (itemView).findViewById(R.id.dateID);
+        teamText = (itemView).findViewById(R.id.teamNameID);
     }
 
     public ConstraintLayout getLayout(){
