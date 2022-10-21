@@ -13,13 +13,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class is an adapter class
+ * @author Ernest Sze
+ */
+
 public class StatAdapter extends RecyclerView.Adapter {
-
-    ArrayList userData;
+    ArrayList<Map<String,String>> users_leading_performances;
     Context currentContext;
-
-    public StatAdapter(ArrayList<User> studentInfoInput, Context context) {
-        userData = studentInfoInput;
+    public StatAdapter(ArrayList<Map<String, String>> userInput, Context context) {
+        users_leading_performances = userInput;
         this.currentContext = context;
     }
 
@@ -32,44 +35,27 @@ public class StatAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        User newStudent = (User) userData.get(position);
-        ArrayList<Map<String, String>> leading_info = new ArrayList<Map<String, String>>();
-
-
-        leading_info = newStudent.ret_leading_performances();
-        System.out.println("retrieved info " + leading_info);
-
+        Map<String, String> current_map_leading = users_leading_performances.get(position);
         String player_name = "";
         String stat_to_show_value = "";
-
         String team_name = "";
         String date = "";
-
         String stat_to_show = "";
 
-        for(int i = 0; i < leading_info.size(); i++)
-        {
-            for (Map.Entry<String, String> entry : leading_info.get(i).entrySet()) {
-
-                if (entry.getKey().equals("Player Name")) {
-                    player_name = entry.getValue();
-                } else if (entry.getKey().equals("Team Name")) {
-                    team_name = entry.getValue();
-                } else if (entry.getKey().equals("Date")) {
-                    date = entry.getValue();
-                } else {
-                    // map for progress and transcript
-                    stat_to_show = entry.getKey();
-                    stat_to_show_value = entry.getValue();
-                }
-
+        for (Map.Entry<String, String> ent: current_map_leading.entrySet()){
+            if (ent.getKey().equals("Player Name")){
+                player_name = ent.getValue();
             }
-
-            System.out.println("name " + player_name);
-            System.out.println("val " + stat_to_show_value);
-            System.out.println("date " + date);
-            System.out.println("team_name " + team_name);
+            else if (ent.getKey().equals("Team Name")){
+                team_name =  ent.getValue();
+            }
+            else if (ent.getKey().equals("Date")){
+                date =  ent.getValue();
+            }
+            else if (!(ent.getKey().equals("Player Name")) || (!ent.getKey().equals("Team Name")) || (!ent.getKey().equals("Date"))) {
+                stat_to_show = ent.getKey();
+                stat_to_show_value = ent.getValue();
+            }
 
             ((StatHolder) holder).nameText.setText(player_name);
             ((StatHolder) holder).statText.setText(stat_to_show_value);
@@ -77,9 +63,7 @@ public class StatAdapter extends RecyclerView.Adapter {
             ((StatHolder) holder).teamText.setText(team_name);
 
             String finalPlayer_name = player_name;
-            String finalStat_to_show = stat_to_show;
             String finalStat_to_show_value = stat_to_show_value;
-
             String finalTeam_name = team_name;
             String finalDate = date;
             ((StatHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
@@ -88,9 +72,9 @@ public class StatAdapter extends RecyclerView.Adapter {
                 public void onClick(View view) {
                     Intent myIntent = new Intent(view.getContext(), addFavouriteStats.class);
                     myIntent.putExtra("Player Name", finalPlayer_name);
-                    myIntent.putExtra(finalStat_to_show, finalStat_to_show_value);
+                    myIntent.putExtra("Stat", finalStat_to_show_value);
                     myIntent.putExtra("Date", finalDate);
-                    myIntent.putExtra("TeamName", finalTeam_name);
+                    myIntent.putExtra("Team Name", finalTeam_name);
                     currentContext.startActivity(myIntent);
                 }
             });
@@ -98,24 +82,13 @@ public class StatAdapter extends RecyclerView.Adapter {
     }
 
 
-
-
-
     @Override
     public int getItemCount() {
-        return userData.size();
+        return users_leading_performances.size();
     }
 
-    public void setGradeData(ArrayList<User> students)
+    public void setGradeData(ArrayList<Map<String, String>> users_leading_performances)
     {
-        this.userData = students;
+        this.users_leading_performances = users_leading_performances;
     }
-
-
-
-
-
-
-
-
 }

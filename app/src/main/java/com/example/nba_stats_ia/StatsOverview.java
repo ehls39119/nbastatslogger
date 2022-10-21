@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,64 +20,71 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+/**
+ * This is the StatsOverview class
+ * @author Ernest Sze
+ */
 
 public class StatsOverview extends AppCompatActivity {
-
-
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     FirebaseFirestore db;
 
     RecyclerView recView;
-    ArrayList<User> userInfo;
+    ArrayList<Map<String, String>> leading_performances_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats_overview);
-
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-        userInfo = new ArrayList<User>();
-        userInfo.clear();
-
+        leading_performances_input = new ArrayList<Map<String, String>>();
         recView = (RecyclerView) findViewById(R.id.recycler1ID);
-        StatAdapter myAdapter = new StatAdapter(userInfo, this);
+        StatAdapter myAdapter = new StatAdapter(leading_performances_input, this);
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+
+    /**
+     * This function retreives data from database for access
+     * @author Ernest Sze
+     */
+
     public void getAndPopulateData(View v) {
-        userInfo.clear();
-
-
         db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
-
                     for (DocumentSnapshot value : documents) {
                         User info = value.toObject(User.class);
                         if (info.ret_leading_performances()!=null){
-                            userInfo.add(info);
+                            leading_performances_input = (info.ret_leading_performances());
                         }
-                    }
-
-                    for (User z: userInfo){
-                        System.out.println("has user info " + z.getName() + "\n");
                     }
 
                     StatAdapter recAdapter = (StatAdapter) recView.getAdapter();
                     assert recAdapter != null;
-                    recAdapter.setGradeData(userInfo);
+                    recAdapter.setGradeData(leading_performances_input);
                     recAdapter.notifyDataSetChanged();
                 }
             }
         });
     }
 
+    /**
+     * This function goes to AddStatsActivity
+     * @author Ernest Sze
+     */
+
+    public void goBack(View v){
+        Intent z = new Intent(this, AddStatsActivity.class);
+        startActivity(z);
+    }
 }

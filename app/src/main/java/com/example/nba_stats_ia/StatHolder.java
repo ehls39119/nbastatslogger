@@ -7,6 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * This class creates the StatHolder Item View
+ * @author Ernest Sze
+ */
 
 public class StatHolder extends RecyclerView.ViewHolder {
     protected TextView nameText;

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,6 +20,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+
+/**
+ * This class allows user acts a repository for user selected performances
+ * @author Ernest Sze
+ */
 
 public class LogActivity extends AppCompatActivity {
 
@@ -27,55 +35,60 @@ public class LogActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     RecyclerView recView;
-    ArrayList<User> userInfo;
-
+    ArrayList<Map<String, String>> fav_performances_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log);
+        setContentView(R.layout.activity_stats_overview);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-        userInfo = new ArrayList<User>();
-        userInfo.clear();
+        fav_performances_input = new ArrayList<Map<String, String>>();
 
-        recView = (RecyclerView) findViewById(R.id.recycler2ID);
-        LogAdapter myAdapter = new LogAdapter(userInfo, this);
+        recView = (RecyclerView) findViewById(R.id.recycler1ID);
+        StatAdapter myAdapter = new StatAdapter(fav_performances_input, this);
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
-    public void getAndPopulateData(View v) {
-        userInfo.clear();
+    /**
+     * This function retrieves data from firebase and displays it through the recycler view
+     * @author Ernest Sze
+     */
 
+    public void getAndPopulateData(View v) {
         db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
-
                     for (DocumentSnapshot value : documents) {
                         User info = value.toObject(User.class);
+                        System.out.println("object " + info.toString());
                         if (info.ret_favourite_performances()!=null){
-                            userInfo.add(info);
+                            fav_performances_input = (info.ret_favourite_performances());
                         }
                     }
-
-                    for (User z: userInfo){
-                        System.out.println("has user info " + z.getName() + "\n");
-                    }
-
-                    LogAdapter recAdapter = (LogAdapter) recView.getAdapter();
+                    StatAdapter recAdapter = (StatAdapter) recView.getAdapter();
                     assert recAdapter != null;
-                    recAdapter.setGradeData(userInfo);
+                    recAdapter.setGradeData(fav_performances_input);
                     recAdapter.notifyDataSetChanged();
                 }
             }
         });
+    }
+
+    /**
+     * This function allows user to go to NavigationActivity
+     * @author Ernest Sze
+     */
+
+    public void goBack(View v){
+        Intent z = new Intent(this, NavigationActivity.class);
+        startActivity(z);
     }
 }

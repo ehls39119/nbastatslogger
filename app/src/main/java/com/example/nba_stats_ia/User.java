@@ -3,6 +3,11 @@ package com.example.nba_stats_ia;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * This is the User class, it stores information about each user
+ * @author Ernest Sze
+ */
+
 public class User {
     public String name;
     public String email;
@@ -62,9 +67,9 @@ public class User {
     }
 
     public ArrayList<Map<String, String>> getLeading_performances() {
+
         return leadingPerformances;
     }
-
 
     public ArrayList<Map<String, String>> ret_leading_performances(){
         return leadingPerformances;
